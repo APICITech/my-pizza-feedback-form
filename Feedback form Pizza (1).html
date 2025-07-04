@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APICI Technologies - Pizza Hotel Feedback</title>
+    <meta name="description" content="Share your Pizza Hotel experience with APICI Technologies. Help us #EntertainYourSenses!">
+    <meta property="og:title" content="APICI Pizza Hotel Feedback">
+    <meta property="og:description" content="Tell us how we can make your pizza moments unforgettable!">
+    <meta property="og:image" content="https://yourdomain.com/pizza-og-image.jpg"> <!-- Replace with your image URL -->
+    <link rel="icon" type="image/png" href="https://yourdomain.com/favicon.png"> <!-- Replace with your favicon -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #ffedd5, #fed7aa);
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .form-container h1 {
+            color: #c2410c;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-container label {
+            color: #4b5563;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-container input:focus, .form-container select:focus, .form-container textarea:focus {
+            border-color: #f97316;
+            outline: none;
+        }
+        .form-container button {
+            background-color: #f97316;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container button:hover {
+            background-color: #ea580c;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="feedbackForm" class="form-container">
+        <h1>🍕 Tell Us About Your Pizza Experience!</h1>
+        <p class="text-center text-gray-600 mb-6">At APICI Technologies, we craft sensory experiences to #EntertainYourSenses. Help us make your pizza moments unforgettable!</p>
+        
+        <div id="question1">
+            <label for="welcome">What made your welcome special today?</label>
+            <textarea id="welcome" name="welcome" rows="4" placeholder="Tell us about the vibe, staff, or atmosphere..."></textarea>
+        </div>
+
+        <div id="question2">
+            <label for="firstTime">Is this your first time at our Pizza Hotel?</label>
+            <select id="firstTime" name="firstTime" onchange="toggleQuestions()">
+                <option value="">Select an option</option>
+                <option value="yes">Yes, it's my first time!</option>
+                <option value="no">No, I'm a returning fan!</option>
+            </select>
+        </div>
+
+        <div id="firstTimeQuestions" class="hidden">
+            <div id="question3">
+                <label for="pizzaLike">How did you like your pizza today?</label>
+                <select id="pizzaLike" name="pizzaLike">
+                    <option value="">Select an option</option>
+                    <option value="amazing">Absolutely amazing!</option>
+                    <option value="good">Pretty good</option>
+                    <option value="okay">It was okay</option>
+                    <option value="needsWork">Needs a bit of work</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="returningQuestions" class="hidden">
+            <div id="question4">
+                <label for="flavorBack">What pizza flavor keeps bringing you back?</label>
+                <input type="text" id="flavorBack" name="flavorBack" placeholder="E.g., Spicy Pepperoni, Truffle Mushroom...">
+            </div>
+            <div id="question5">
+                <label for="recommendChange">If we could tweak one thing, what would you recommend?</label>
+                <textarea id="recommendChange" name="recommendChange" rows="4" placeholder="Any ideas to make your experience even better?"></textarea>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit">Share Your Feedback</button>
+        </div>
+    </form>
+
+    <script>
+        function toggleQuestions() {
+            const firstTime = document.getElementById('firstTime').value;
+            const firstTimeQuestions = document.getElementById('firstTimeQuestions');
+            const returningQuestions = document.getElementById('returningQuestions');
+
+            if (firstTime === 'yes') {
+                firstTimeQuestions.classList.remove('hidden');
+                returningQuestions.classList.add('hidden');
+            } else if (firstTime === 'no') {
+                firstTimeQuestions.classList.add('hidden');
+                returningQuestions.classList.remove('hidden');
+            } else {
+                firstTimeQuestions.classList.add('hidden');
+                returningQuestions.classList.add('hidden');
+            }
+        }
+
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Thank you for your feedback! We’re looping it into our APICI process to make your next visit even better.');
+            // In a real implementation, send data to a server (e.g., APICI API)
+            // Example: fetch('https://api.apici.com/feedback', { method: 'POST', body: new FormData(this) });
+            this.reset();
+            document.getElementById('firstTimeQuestions').classList.add('hidden');
+            document.getElementById('returningQuestions').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
